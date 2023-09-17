@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import Axios from "axios";
 import './App.css';
+import { useState } from "react";
+
 
 function App() {
+  const [query, setQuery] = useState("");
+  const [recipes, setRecipes] = useState([]);
+  
+  const url = `https://api.edamam.com/search?q=${query}&app_id=badfa13a&app_key=67b4a79d44c512610e649442b30002b8`;
+
+  async function getRecipesInfo() {
+    var result = await Axios.get(url);
+    setRecipes(result.data.hits);
+    console.log(result.data);
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    getRecipesInfo();
+  }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <h1>
+   Food Recipe Plaza
+   </h1>
+   <form className="searchForm" onSubmit={onSubmit}>
+    <input className="Input" type="text" placeholder="Enter Ingredient"
+     value={query} onChange={(e) => setQuery(e.target.value) }
+     />
+     <input className="Submit" type="Submit" value="Search" />
+   </form>
+
+   <div>
+     {recipes.map(recipe => {
+      return <p>
+        {recipe["recipe"]["label"]}
+      </p>
+     } )}
+   </div>
     </div>
   );
 }
