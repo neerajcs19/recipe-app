@@ -25,7 +25,7 @@
     border: 2px solid #02aff0;
     border-radius: 4px;
     color: white;
-    cursor:  ;
+    cursor: pointer;
 }
 .Submit:hover {
     padding: 6px 30px;
