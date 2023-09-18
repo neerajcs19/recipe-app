@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import './RecipeTile.css';
 
-export default function RecipeTile() {
+export default function RecipeTile({recipe}) {
   return (
     <div className='RecipeTile' >
-        <p>
-            Recipe Name
-        </p>
+    <img className='Images' src={ recipe["recipe"]["image"] } alt={'alt'} />
+        <p className='ParaName'>{recipe["recipe"]["label"]}</p>
     </div>
   )
 }

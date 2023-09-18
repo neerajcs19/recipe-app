@@ -1,6 +1,7 @@
 import Axios from "axios";
 import './App.css';
 import { useState } from "react";
+import RecipeTile from "./RecipeTile";
 
 
 function App() {
@@ -34,11 +35,9 @@ function App() {
      <input className="Submit" type="Submit" value="Search" />
    </form>
 
-   <div>
+   <div className="Recipes">
      {recipes.map(recipe => {
-      return <p>
-        {recipe["recipe"]["label"]}
-      </p>
+      return <RecipeTile recipe={recipe} /> ;
      } )}
    </div>
     </div>
